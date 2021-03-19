@@ -1,0 +1,224 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "JW2",
+    "x-lastModified": "19 March 2021 11:14:26 pm (Singapore Standard Time)",
+    "description": "JW2 Product Catalog"
+  },
+  "paths": {
+    "/products": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "schema": {
+              "$ref": "#/definitions/Products"
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": 1,
+                  "name": "A green door",
+                  "description": "a door that is green",
+                  "price": 12.5,
+                  "tags": [
+                    "home",
+                    "green",
+                    "doors"
+                  ]
+                },
+                {
+                  "id": 2,
+                  "name": "A red door",
+                  "description": "a door that is red",
+                  "price": 12.5,
+                  "tags": [
+                    "home",
+                    "red",
+                    "doors"
+                  ]
+                },
+                {
+                  "id": 3,
+                  "name": "A yellow door",
+                  "description": "a door that is yellow",
+                  "price": 12.5,
+                  "tags": [
+                    "home",
+                    "yellow",
+                    "doors"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "format": ""
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "format": ""
+          }
+        ],
+        "operationId": "getProducts",
+        "summary": "Retrieve product list by search name and descritpion"
+      },
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Success response",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "409": {
+            "description": "Create Fail",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "operationId": "postProducts",
+        "summary": "Add a new product",
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/products/[productid]": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        },
+        "parameters": [],
+        "operationId": "getProducts[productid]",
+        "summary": "Get a specific product by productid"
+      },
+      "put": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "operationId": "putProducts[productid]",
+        "summary": "Create a new product",
+        "consumes": [
+          "application/json"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "default": 3
+          },
+          "name": {
+            "type": "string",
+            "default": "A yellow door"
+          },
+          "description": {
+            "type": "string",
+            "default": "a door that is yellow"
+          },
+          "price": {
+            "type": "number",
+            "default": 12.5
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "default": "doors"
+            }
+          }
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "default": 1
+        },
+        "name": {
+          "type": "string",
+          "default": "A green door"
+        },
+        "description": {
+          "type": "string",
+          "default": "a door that is green"
+        },
+        "price": {
+          "type": "number",
+          "default": 12.5
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "default": "doors"
+          }
+        }
+      }
+    }
+  }
+}
